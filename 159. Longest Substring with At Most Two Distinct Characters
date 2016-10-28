@@ -16,7 +16,7 @@ public class Solution {
                 for(int i : index.values()) leftMost = Math.min(leftMost,i);
                 char c = s.charAt(leftMost);
                 index.remove(c);
-                lo = leftMost+1;
+                lo = leftMost+1;//key
             }
             maxLength = Math.max(maxLength, hi-lo);
         }
