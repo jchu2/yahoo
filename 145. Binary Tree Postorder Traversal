@@ -1,0 +1,37 @@
+public class Solution {
+    public ArrayList<Integer> postorderTraversal(TreeNode root) {
+        ArrayList<Integer>a=new ArrayList<>();
+        if (root==null) return a;
+        a.addAll(postorderTraversal(root.left));
+        a.addAll(postorderTraversal(root.right));
+        a.add(root.val);
+        return a;
+    }
+}
+
+
+
+public class Solution {
+    public ArrayList<Integer> postorderTraversal(TreeNode root) {
+         ArrayList<Integer>a=new ArrayList<Integer>();
+        if (root==null)
+            return a;
+        Stack<TreeNode>stack1=new Stack<TreeNode>();
+        Stack<TreeNode>stack2=new Stack<TreeNode>();
+        stack1.add(root);
+        while (!stack1.empty())
+        {
+            TreeNode t=stack1.pop();
+            if (t.left!=null)
+                stack1.add(t.left);
+            if (t.right!=null)
+                stack1.add(t.right);
+            stack2.add(t);
+        }
+        while (!stack2.empty())
+        {
+            a.add(stack2.pop().val);
+        }
+       return a;
+    }
+}
