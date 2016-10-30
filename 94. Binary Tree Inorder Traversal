@@ -15,3 +15,27 @@ public class Solution {
         return result;
     }
 }
+/*
+http://www.codebytes.in/2014/12/finding-in-order-successor-of-given.html
+*/
+
+Node getInorderSuccessor(Node node){
+    //If it is the last node in the Inorder Traversal, return null.
+    if(node == null)return null;
+    
+    //If the target node has a right child, then the answer will be the left most child for the right subtree.
+    if(node.right != null){
+        node = node.right;
+        while(node.left!=null)node= node.left;
+        return node;
+    }
+    
+    //If the target node does not have a child, then the answer will be the parent of this node.
+    Node prev = node;
+    node = node.parent; 
+    while(node!= null && prev!=node.left){
+        prev = node;
+        node = node.parent;
+    }
+    return node;
+}
