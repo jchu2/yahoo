@@ -1,0 +1,42 @@
+https://www.careercup.com/question?id=17511673
+
+
+public Node kthLargest(Node node, int k) {
+		if (node != null) {
+			kthLargest(node.rightChild, k);
+			k--;
+			if (k == 0) {
+				return root;
+			}
+			kthLargest(node.leftChild, k);
+		}
+		return null;
+	}
+
+
+public static Node ReturnKthItemNonRecursive(Node root, int k){
+            if (k <= 0 || root == null)
+                return null;
+            int i = 0;
+            Node node = root;
+            Stack<Node> stk = new Stack<Node>();
+            while (node != null){
+                do{
+                    stk.Push(node);
+                    node = node.Right;
+                } while (node != null);
+                node = stk.Pop();i++;
+                do{
+                    if (i == k)
+                        return node;
+                    if (node.Left == null){
+                        if (stk.Count == 0)
+                            return null;
+                        node = stk.Pop();i++;
+                    }
+                } while (node.Left != null);
+                node = node.Left;
+            }
+            return null;
+        }
+   
