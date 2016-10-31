@@ -1,0 +1,69 @@
+    public static void quickSort(int[] unsorted) {
+        quickSort(unsorted, 0, unsorted.length - 1);
+    }
+
+    /**
+     * Recursive quicksort.
+     * This sorts the values of the input array directly.
+     * @param unsorted an array to sort
+     * @param left left boundary index
+     * @param right right boundary index
+     */
+    private static void quickSort(int[] unsorted, int left, int right) {
+        // base case
+        if (left >= right) {
+            return;
+        }
+
+        // recursive case
+        int pivot = unsorted[right];
+        // partition first to get position of pivot value
+        int partition = partition(unsorted, left, right, pivot);
+
+        // perform recursive calls
+        quickSort(unsorted, left, partition - 1);
+        quickSort(unsorted, partition + 1, right);
+    }
+
+    /**
+     * Partitions the input array into two parts using the pivot value.
+     * @param arr an array to partition
+     * @param left left boundary index (inclusive)
+     * @param right right boundary index (exclusive)
+     * @param pivot pivot value (this is not index)
+     * @return the index of the pivot value in the end
+     */
+    private static int partition(int[] arr, int left, int right, int pivot) {
+        // make both leftPointer and rightPointer exclusive to be consistent
+        int leftPointer = left - 1;
+        int rightPointer = right;
+
+        while (true) {
+            // scanning to find out-of-place values
+            while (arr[++leftPointer] < pivot);
+            while (rightPointer > 0 && arr[--rightPointer] > pivot);
+            if (leftPointer >= rightPointer) {
+                // nothing to swap
+                break;
+            } else {
+                // swap out-of-place values
+                swap(arr, leftPointer, rightPointer);
+            }
+        }
+        // put pivot value into the right location (its final position)
+        swap(arr, leftPointer, right);
+        // return index of the pivot value
+        return leftPointer;
+    }
+
+    /**
+     * Helper method to swap two elements in the input array.
+     * @param data input array to update
+     * @param one one index
+     * @param two the other index
+     */
+    private static void swap(int[] data, int one, int two) {
+        int tmp = data[one];
+        data[one] = data[two];
+        data[two] = tmp;
+    }
