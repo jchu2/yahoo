@@ -1,0 +1,61 @@
+    public static int[] mergeSort(int[] unsorted) {
+        // base case
+        if (unsorted.length <= 1) {
+            return unsorted;
+        }
+
+        // recursive case
+        // divide into two
+        int mid = unsorted.length / 2;
+        int[] left = new int[mid];
+        System.arraycopy(unsorted, 0, left, 0, mid);
+        int[] right = new int[unsorted.length - mid];
+        System.arraycopy(unsorted, mid, right, 0, right.length);
+
+        // call itself to sort left
+        left = mergeSort(left);
+        // call itself to sort right
+        right = mergeSort(right);
+
+        // merge sorted halves
+        return merge(left, right);
+    }
+
+    /**
+     * Merges two sorted arrays into one.
+     * Precondition: two input arrays are sorted and not null
+     * @param left sorted array
+     * @param right the other sorted array
+     * @return one merged array where elements are sorted
+     */
+    private static int[] merge(int[] left, int[] right) {
+        int[] merged = new int[left.length + right.length];
+        int indexLeft = 0, indexRight = 0, indexMerged = 0;
+
+        // traverse and put proper values into merged array from left or right
+        while (indexLeft < left.length && indexRight < right.length) {
+            if (left[indexLeft] < right[indexRight]) {
+                merged[indexMerged] = left[indexLeft];
+                indexLeft++;
+            } else {
+                merged[indexMerged] = right[indexRight];
+                indexRight++;
+            }
+            indexMerged++;
+        }
+
+        // since not all the elements are copied over to merged array
+        if (indexLeft < left.length) {
+            // elements are still in left
+            for (int i = indexLeft; i < left.length; i++) {
+                merged[indexMerged++] = left[i];
+            }
+        } else {
+            // elements are still in right
+            for (int i = indexRight; i < right.length; i++) {
+                merged[indexMerged++] = right[i];
+            }
+        }
+
+        return merged;
+    }
