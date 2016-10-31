@@ -17,6 +17,8 @@ public class Solution {
     }
 }
 
+// '/s' stands for a whitespace character, short for [ \t\n\x0b\r\f]
+
 
 //wrong
 public class Solution {
