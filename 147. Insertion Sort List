@@ -1,0 +1,25 @@
+   public ListNode insertionSortList(ListNode head) {
+        // write your code here
+        if(head == null) return null;
+        ListNode helper = new ListNode(-1);
+        helper.next = head;
+        ListNode run = head;
+        while (run.next != null) {
+            //find one less than previous
+            if (run.val > run.next.val) {
+                //key point!!! compare from beginning each round!
+                ListNode pre = helper;
+                ListNode small = run.next;
+                while(pre.next.val < small.val){
+                    pre = pre.next;
+                }
+                ListNode temp = pre.next;
+                pre.next = small;
+                run.next = small.next;
+                small.next = temp;
+            }
+            else run = run.next;
+        }
+        return helper.next;
+    }
+}
