@@ -1,0 +1,24 @@
+public class Fibonacci1 {  
+    //递归调用  
+    public static int fibonacci(int n){ //此算法在N=40时出现明显卡顿  
+        if(n==0) return 0;  
+        if(n==1) return 1;  
+        return fibonacci(n-1)+fibonacci(n-2);  
+    }  
+    
+    public static int fibonacci2(int N){    //此算法速度较快，N=46时也不卡顿，N=47时超过了int范围           
+        int[] arr = new int[N+1];   //数组从0开始，若想要一个数组有a[9],在声明时必须是int[] a = new int[10];这样才会有a[9]  
+        arr[0] = 0 ;  
+        arr[1] = 1 ;  
+        if( N==0 ) return 0;  
+        if(N==1) return 1;  
+        if(N>1){  
+            for(int i = 2;i<=N;i++)  
+                arr[i] = arr[i-1]+ arr[i-2];  
+        }  
+        return arr[N];  
+          
+    }  
+    
+} 
+
