@@ -4,18 +4,18 @@ public class Solution {
          TreeNode p = root;
          int count = 0;
          while(!stack.isEmpty() || p != null) {
-             if(p != null) {
+             while(p != null) {
                  stack.push(p);  // Just like recursion
                  p = p.left;   
-             } else {
+             } 
                 TreeNode node = stack.pop();
                 if(++count == k) return node.val; //key
                 p = node.right;
              }
-         }
          return Integer.MIN_VALUE;
-     }
+    }
 }
+
 
 
 public class Solution {
