@@ -1,6 +1,6 @@
 public class MovingAverage {
     private int [] window;
-    private int n, insert;
+    private int n, insert; //key
     private long sum;   
     /** Initialize your data structure here. */
     public MovingAverage(int size) {
