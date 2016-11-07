@@ -1,3 +1,8 @@
+    /**
+     * Bubble sort runs in O(n^2) simple but slow.
+     * Focus on the largest value!
+     * @param data an array of int to sort
+     */
     public static void bubbleSort(int[] data) {
         // move backward from the last index
         for (int out = data.length - 1; out >= 1; out--) {
